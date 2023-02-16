@@ -12,9 +12,8 @@ class ImageCellView: UICollectionViewCell {
     static let reuseID = "ImageCell"
     private lazy var imageView: UIImageView = {
         let image = UIImageView()
-        // TODO: Нормальный размер ячейки
-        // https://developer.apple.com/documentation/uikit/uiimageview
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
         return image
     }()
     

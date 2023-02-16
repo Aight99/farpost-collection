@@ -14,7 +14,6 @@ final class ImageProvider {
     func fetchImage(url: URL, completion: @escaping (UIImage) -> Void) {
         
         if let cachedImage = cache.object(forKey: url.absoluteString as NSString) {
-            print("Get from cache")
             completion(cachedImage)
             return
         }
@@ -28,7 +27,6 @@ final class ImageProvider {
             
             self?.cache.setObject(image, forKey: url.absoluteString as NSString)
             DispatchQueue.main.async {
-                print("Fetch from URL")
                 completion(image)
             }
         }
