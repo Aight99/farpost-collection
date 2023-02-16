@@ -9,10 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let numberOfCells = 6
     let cellBoundsInset: CGFloat = 10
-    private let imageProvider: ImageProvider = ImageProvider()
-    private(set) var imageCells: [ImageCell]
+    private let imageCollection: ImageCollection
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -22,13 +20,13 @@ class ViewController: UIViewController {
         return collectionView
     }()
     
-    init(ImageCells: [ImageCell]) {
-        self.imageCells = ImageCells
+    init(imageCells: [ImageCell]) {
+        self.imageCollection = ImageCollection(imageCells: imageCells)
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
-        self.imageCells = []
+        self.imageCollection = ImageCollection()
         super.init(coder: coder)
     }
     
@@ -38,7 +36,7 @@ class ViewController: UIViewController {
         view.backgroundColor = .white
         setup()
         collectionView.delegate = self
-        collectionView.dataSource = self
+        collectionView.dataSource = imageCollection
     }
     
     @objc private func nextScreen() {
@@ -54,27 +52,6 @@ class ViewController: UIViewController {
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
-    }
-}
-
-
-extension ViewController: UICollectionViewDataSource {
-    
-    // TODO: Нормально впихнуть numberOfCells
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.imageCells.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCellView.reuseID, for: indexPath) as? ImageCellView else { fatalError("Cannot dequeue valid cell") }
-        
-        cell.configure()
-        let imageUrl = imageCells[indexPath.row].imageUrl
-        imageProvider.fetchImage(url: imageUrl) { [weak cell] image in
-            cell?.setImage(image: image)
-        }
-        
-        return cell
     }
 }
 
@@ -97,50 +74,18 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Clicked \(indexPath.row) = \(imageCells[indexPath.row].imageUrl)")
+        print("Clicked \(indexPath.row) = \(imageCollection.imageCells[indexPath.row].imageUrl)")
     }
 }
 
 
 extension ViewController {
-    convenience init() {
-        //        let images = [
-        //            ImageCell(),
-        //            ImageCell(),
-        //            ImageCell(),
-        //            ImageCell(),
-        //            ImageCell(),
-        //            ImageCell(),
-        //        ]
-        let images = [
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-        ]
-        
-        self.init(ImageCells: images)
+    convenience init(collectionSize: Int = 15) {
+        var images: [ImageCell] = []
+        images.reserveCapacity(collectionSize)
+        for _ in 0..<collectionSize {
+            images.append(ImageCell())
+        }
+        self.init(imageCells: images)
     }
 }

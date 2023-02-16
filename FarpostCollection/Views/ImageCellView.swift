@@ -26,7 +26,7 @@ class ImageCellView: UICollectionViewCell {
     }
     
     private func setup() {
-        backgroundColor = .systemYellow
+        backgroundColor = .lightGray
         addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

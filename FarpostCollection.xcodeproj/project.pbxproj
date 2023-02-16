@@ -15,6 +15,7 @@
 		B6E5646D299D43AD00FDD7AB /* ImageCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E5646C299D43AD00FDD7AB /* ImageCellView.swift */; };
 		B6E5646F299D457E00FDD7AB /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E5646E299D457E00FDD7AB /* ImageCell.swift */; };
 		B6E56471299E959200FDD7AB /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E56470299E959200FDD7AB /* ImageProvider.swift */; };
+		B6E56473299EBB1D00FDD7AB /* ImageCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E56472299EBB1D00FDD7AB /* ImageCollection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		B6E5646C299D43AD00FDD7AB /* ImageCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCellView.swift; sourceTree = "<group>"; };
 		B6E5646E299D457E00FDD7AB /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		B6E56470299E959200FDD7AB /* ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
+		B6E56472299EBB1D00FDD7AB /* ImageCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				B6E5646E299D457E00FDD7AB /* ImageCell.swift */,
+				B6E56472299EBB1D00FDD7AB /* ImageCollection.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6429E02299CCCAE0044B4DA /* ViewController.swift in Sources */,
+				B6E56473299EBB1D00FDD7AB /* ImageCollection.swift in Sources */,
 				B6429DFE299CCCAE0044B4DA /* AppDelegate.swift in Sources */,
 				B6E56471299E959200FDD7AB /* ImageProvider.swift in Sources */,
 				B6E5646D299D43AD00FDD7AB /* ImageCellView.swift in Sources */,
