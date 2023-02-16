@@ -7,8 +7,13 @@
 
 import UIKit
 
+protocol ImageCollectionDelegate: AnyObject {
+    func removeImageCellView(at: Int)
+}
+
 final class ImageCollection: NSObject {
     
+    weak var delegate: ImageCollectionDelegate?
     private let imageProvider: ImageProvider = ImageProvider()
     private(set) var imageCells: [ImageCell]
     
@@ -18,6 +23,11 @@ final class ImageCollection: NSObject {
     
     override init() {
         self.imageCells = []
+    }
+    
+    func dropImage(index: Int) {
+        imageCells.remove(at: index)
+        delegate?.removeImageCellView(at: index)
     }
 }
 

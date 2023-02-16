@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     private let imageCollection: ImageCollection
     
     private let collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
+        let layout = RightAnimationFlowLayout()
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(ImageCellView.self, forCellWithReuseIdentifier: ImageCellView.reuseID)
@@ -23,11 +23,13 @@ class ViewController: UIViewController {
     init(imageCells: [ImageCell]) {
         self.imageCollection = ImageCollection(imageCells: imageCells)
         super.init(nibName: nil, bundle: nil)
+        imageCollection.delegate = self
     }
     
     required init?(coder: NSCoder) {
         self.imageCollection = ImageCollection()
         super.init(coder: coder)
+        imageCollection.delegate = self
     }
     
     override func viewDidLoad() {
@@ -39,12 +41,13 @@ class ViewController: UIViewController {
         collectionView.dataSource = imageCollection
     }
     
-    @objc private func nextScreen() {
-        navigationController?.pushViewController(ViewController(), animated: true)
-    }
-    
     private func setup() {
         view.addSubview(collectionView)
+        
+        if let layout = collectionView.collectionViewLayout as? RightAnimationFlowLayout {
+            layout.boundsView = view
+        }
+        
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -52,6 +55,15 @@ class ViewController: UIViewController {
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
+    }
+}
+
+
+extension ViewController: ImageCollectionDelegate {
+    
+    func removeImageCellView(at: Int) {
+        let indexPath = IndexPath(row: at, section: 0)
+        collectionView.deleteItems(at: [indexPath])
     }
 }
 
@@ -74,13 +86,13 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Clicked \(indexPath.row) = \(imageCollection.imageCells[indexPath.row].imageUrl)")
+        imageCollection.dropImage(index: indexPath.row)
     }
 }
 
 
 extension ViewController {
-    convenience init(collectionSize: Int = 15) {
+    convenience init(collectionSize: Int = 6) {
         var images: [ImageCell] = []
         images.reserveCapacity(collectionSize)
         for _ in 0..<collectionSize {

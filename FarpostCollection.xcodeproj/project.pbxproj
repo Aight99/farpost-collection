@@ -16,6 +16,7 @@
 		B6E5646F299D457E00FDD7AB /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E5646E299D457E00FDD7AB /* ImageCell.swift */; };
 		B6E56471299E959200FDD7AB /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E56470299E959200FDD7AB /* ImageProvider.swift */; };
 		B6E56473299EBB1D00FDD7AB /* ImageCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E56472299EBB1D00FDD7AB /* ImageCollection.swift */; };
+		B6E56476299EE51E00FDD7AB /* RightAnimationFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E56475299EE51E00FDD7AB /* RightAnimationFlowLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		B6E5646E299D457E00FDD7AB /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		B6E56470299E959200FDD7AB /* ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
 		B6E56472299EBB1D00FDD7AB /* ImageCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollection.swift; sourceTree = "<group>"; };
+		B6E56475299EE51E00FDD7AB /* RightAnimationFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightAnimationFlowLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		B6429DFC299CCCAE0044B4DA /* FarpostCollection */ = {
 			isa = PBXGroup;
 			children = (
+				B6E56474299EE4A300FDD7AB /* Managers */,
 				B6E5646B299D415F00FDD7AB /* Controllers */,
 				B6E5646A299D415600FDD7AB /* Models */,
 				B6E56469299D414B00FDD7AB /* Views */,
@@ -70,7 +73,6 @@
 				B6429E06299CCCB40044B4DA /* Assets.xcassets */,
 				B6429E08299CCCB40044B4DA /* LaunchScreen.storyboard */,
 				B6429E0B299CCCB40044B4DA /* Info.plist */,
-				B6E56470299E959200FDD7AB /* ImageProvider.swift */,
 			);
 			path = FarpostCollection;
 			sourceTree = "<group>";
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				B6E5646C299D43AD00FDD7AB /* ImageCellView.swift */,
+				B6E56475299EE51E00FDD7AB /* RightAnimationFlowLayout.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -98,6 +101,14 @@
 				B6429E01299CCCAE0044B4DA /* ViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B6E56474299EE4A300FDD7AB /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				B6E56470299E959200FDD7AB /* ImageProvider.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,6 +186,7 @@
 				B6429DFE299CCCAE0044B4DA /* AppDelegate.swift in Sources */,
 				B6E56471299E959200FDD7AB /* ImageProvider.swift in Sources */,
 				B6E5646D299D43AD00FDD7AB /* ImageCellView.swift in Sources */,
+				B6E56476299EE51E00FDD7AB /* RightAnimationFlowLayout.swift in Sources */,
 				B6429E00299CCCAE0044B4DA /* SceneDelegate.swift in Sources */,
 				B6E5646F299D457E00FDD7AB /* ImageCell.swift in Sources */,
 			);
