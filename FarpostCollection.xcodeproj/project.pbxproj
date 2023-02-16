@@ -14,6 +14,7 @@
 		B6429E0A299CCCB40044B4DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6429E08299CCCB40044B4DA /* LaunchScreen.storyboard */; };
 		B6E5646D299D43AD00FDD7AB /* ImageCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E5646C299D43AD00FDD7AB /* ImageCellView.swift */; };
 		B6E5646F299D457E00FDD7AB /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E5646E299D457E00FDD7AB /* ImageCell.swift */; };
+		B6E56471299E959200FDD7AB /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E56470299E959200FDD7AB /* ImageProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		B6429E0B299CCCB40044B4DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6E5646C299D43AD00FDD7AB /* ImageCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCellView.swift; sourceTree = "<group>"; };
 		B6E5646E299D457E00FDD7AB /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		B6E56470299E959200FDD7AB /* ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				B6429E06299CCCB40044B4DA /* Assets.xcassets */,
 				B6429E08299CCCB40044B4DA /* LaunchScreen.storyboard */,
 				B6429E0B299CCCB40044B4DA /* Info.plist */,
+				B6E56470299E959200FDD7AB /* ImageProvider.swift */,
 			);
 			path = FarpostCollection;
 			sourceTree = "<group>";
@@ -166,6 +169,7 @@
 			files = (
 				B6429E02299CCCAE0044B4DA /* ViewController.swift in Sources */,
 				B6429DFE299CCCAE0044B4DA /* AppDelegate.swift in Sources */,
+				B6E56471299E959200FDD7AB /* ImageProvider.swift in Sources */,
 				B6E5646D299D43AD00FDD7AB /* ImageCellView.swift in Sources */,
 				B6429E00299CCCAE0044B4DA /* SceneDelegate.swift in Sources */,
 				B6E5646F299D457E00FDD7AB /* ImageCell.swift in Sources */,

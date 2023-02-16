@@ -11,7 +11,8 @@ class ViewController: UIViewController {
     
     let numberOfCells = 6
     let cellBoundsInset: CGFloat = 10
-    private(set) var ImageCells: [ImageCell]
+    private let imageProvider: ImageProvider = ImageProvider()
+    private(set) var imageCells: [ImageCell]
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -22,12 +23,12 @@ class ViewController: UIViewController {
     }()
     
     init(ImageCells: [ImageCell]) {
-        self.ImageCells = ImageCells
+        self.imageCells = ImageCells
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
-        self.ImageCells = []
+        self.imageCells = []
         super.init(coder: coder)
     }
     
@@ -56,33 +57,27 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController {
-    convenience init() {
-        let images = [
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-            ImageCell(),
-        ]
-        self.init(ImageCells: images)
-    }
-}
 
 extension ViewController: UICollectionViewDataSource {
     
     // TODO: Нормально впихнуть numberOfCells
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.ImageCells.count
+        return self.imageCells.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCellView.reuseID, for: indexPath) as? ImageCellView else { fatalError("Cannot dequeue valid cell") }
+        
         cell.configure()
+        let imageUrl = imageCells[indexPath.row].imageUrl
+        imageProvider.fetchImage(url: imageUrl) { [weak cell] image in
+            cell?.setImage(image: image)
+        }
+        
         return cell
     }
 }
+
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
     
@@ -99,5 +94,53 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let availableWidth = view.frame.width - 2 * self.cellBoundsInset
         return CGSize(width: availableWidth, height: availableWidth)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Clicked \(indexPath.row) = \(imageCells[indexPath.row].imageUrl)")
+    }
+}
+
+
+extension ViewController {
+    convenience init() {
+        //        let images = [
+        //            ImageCell(),
+        //            ImageCell(),
+        //            ImageCell(),
+        //            ImageCell(),
+        //            ImageCell(),
+        //            ImageCell(),
+        //        ]
+        let images = [
+            ImageCell(),
+            ImageCell(),
+            ImageCell(),
+            ImageCell(),
+            ImageCell(),
+            ImageCell(),
+            ImageCell(),
+            ImageCell(),
+            ImageCell(),
+            ImageCell(),
+            ImageCell(),
+            ImageCell(),
+            ImageCell(),
+            ImageCell(),
+            ImageCell(),
+            ImageCell(),
+            ImageCell(),
+            ImageCell(),
+            ImageCell(),
+            ImageCell(),
+            ImageCell(),
+            ImageCell(),
+            ImageCell(),
+            ImageCell(),
+            ImageCell(),
+            ImageCell(),
+        ]
+        
+        self.init(ImageCells: images)
     }
 }
