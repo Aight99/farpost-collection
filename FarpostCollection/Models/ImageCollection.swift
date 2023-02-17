@@ -15,19 +15,26 @@ final class ImageCollection: NSObject {
     
     weak var delegate: ImageCollectionDelegate?
     private let imageProvider: ImageProvider = ImageProvider()
+    let initialImageCells: [ImageCell]
     private(set) var imageCells: [ImageCell]
     
     init(imageCells: [ImageCell]) {
+        self.initialImageCells = imageCells
         self.imageCells = imageCells
     }
     
     override init() {
+        self.initialImageCells = []
         self.imageCells = []
     }
     
     func dropImage(index: Int) {
         imageCells.remove(at: index)
         delegate?.removeImageCellView(at: index)
+    }
+    
+    func resetCollection() {
+        imageCells = initialImageCells
     }
 }
 

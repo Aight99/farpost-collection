@@ -11,6 +11,10 @@ final class ImageProvider {
     
     private let cache = NSCache<NSString, UIImage>()
     
+    func clearCache() {
+        cache.removeAllObjects()
+    }
+    
     func fetchImage(url: URL, completion: @escaping (UIImage) -> Void) {
         
         if let cachedImage = cache.object(forKey: url.absoluteString as NSString) {
@@ -33,5 +37,4 @@ final class ImageProvider {
         
         session.resume()
     }
-    
 }

@@ -19,6 +19,10 @@ class ViewController: UIViewController {
         collectionView.register(ImageCellView.self, forCellWithReuseIdentifier: ImageCellView.reuseID)
         return collectionView
     }()
+    private let refreshControl: UIRefreshControl = {
+        let refresh = UIRefreshControl()
+        return refresh
+    }()
     
     init(imageCells: [ImageCell]) {
         self.imageCollection = ImageCollection(imageCells: imageCells)
@@ -34,14 +38,16 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "FarPost"
-        view.backgroundColor = .white
         setup()
         collectionView.delegate = self
         collectionView.dataSource = imageCollection
+        collectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshCollection(sender:)), for: .valueChanged)
     }
     
     private func setup() {
+        title = "FarPost"
+        view.backgroundColor = .white
         view.addSubview(collectionView)
         
         if let layout = collectionView.collectionViewLayout as? RightAnimationFlowLayout {
@@ -55,6 +61,12 @@ class ViewController: UIViewController {
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
+    }
+    
+    @objc private func refreshCollection(sender: UIRefreshControl) {
+        imageCollection.resetCollection()
+        collectionView.reloadData()
+        sender.endRefreshing()
     }
 }
 
