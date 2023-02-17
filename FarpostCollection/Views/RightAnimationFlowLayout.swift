@@ -11,14 +11,18 @@ class RightAnimationFlowLayout: UICollectionViewFlowLayout {
     
     let offsetIfBoundsViewNotProvided: CGFloat = 1000
     weak var boundsView: UIView?
+    var lastIndexPath: IndexPath?
     
     override func finalLayoutAttributesForDisappearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        let attrs = super.finalLayoutAttributesForDisappearingItem(at: itemIndexPath)
-        if let center = attrs?.center {
+        let attributes = super.finalLayoutAttributesForDisappearingItem(at: itemIndexPath)
+        
+        if itemIndexPath == lastIndexPath, let center = attributes?.center {
             let offset = boundsView != nil ? boundsView?.frame.width : offsetIfBoundsViewNotProvided
-            attrs?.center = CGPoint(x: center.x + offset!, y: center.y)
+            attributes?.center = CGPoint(x: center.x + offset!, y: center.y)
+            lastIndexPath = nil
         }
-        attrs?.alpha = 1.0
-        return attrs
+        
+        attributes?.alpha = 1.0
+        return attributes
     }
 }
