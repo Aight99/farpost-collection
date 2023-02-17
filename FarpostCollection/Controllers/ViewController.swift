@@ -98,10 +98,10 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        imageCollection.dropImage(index: indexPath.row)
         if let layout = collectionView.collectionViewLayout as? RightAnimationFlowLayout {
             layout.lastIndexPath = indexPath
         }
+        imageCollection.dropImage(index: indexPath.row)
     }
 }
 
