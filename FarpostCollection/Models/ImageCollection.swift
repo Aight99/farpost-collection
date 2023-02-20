@@ -50,7 +50,7 @@ extension ImageCollection: UICollectionViewDataSource {
         
         cell.configure()
         let imageUrl = imageCells[indexPath.row].imageUrl
-        imageProvider.fetchImage(url: imageUrl) { [weak cell] image in
+        imageProvider.getImage(url: imageUrl) { [weak cell] image in
             cell?.setImage(image: image)
         }
         
